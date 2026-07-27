@@ -1,0 +1,50 @@
+{
+  "reference": {
+    "path": "session01/neon_kid/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee_0-3600000000000.mp4",
+    "trim_start_frame": 300,
+    "trim_end_frame": 9300,
+    "fps": 30,
+    "neon": {
+      "recording_dir": "session01/neon_kid",
+      "world_timestamps": "session01/neon_kid/world_timestamps.csv",
+      "info": "session01/neon_kid/info.json"
+    }
+  },
+  "streams": [
+    {
+      "name": "parent_scene",
+      "path": "session01/neon_parent/ffffffff-1111-2222-3333-444444444444_0-3600000000000.mp4",
+      "sync_frame": 410,
+      "align_to_ref_frame": 180,
+      "neon": {
+        "recording_dir": "session01/neon_parent",
+        "world_timestamps": "session01/neon_parent/world_timestamps.csv",
+        "info": "session01/neon_parent/info.json"
+      }
+    },
+    {
+      "name": "env_topdown",
+      "path": "session01/env_topdown.mkv",
+      "sync_frame": 95,
+      "align_to_ref_frame": 180
+    },
+    {
+      "name": "env_adult_side",
+      "path": "session01/env_adult_side.mkv",
+      "sync_frame": 95,
+      "align_to_ref_frame": 180
+    },
+    {
+      "name": "env_toddler_side",
+      "path": "session01/env_toddler_side.mkv",
+      "sync_frame": 96,
+      "align_to_ref_frame": 180
+    },
+    {
+      "name": "reolink",
+      "path": "session01/reolink.mp4",
+      "sync_frame": 512,
+      "align_to_ref_frame": 180
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Runtime dependencies
+
+Current scripts (`convert_fps.py`, `sync_av.py`) need:
+
+1. **Python 3.9+** (standard library only)
+2. System **ffmpeg** and **ffprobe** on `PATH`
+
+No `pip install` step is required today.
+
+When a future tool adds Python packages (e.g. Neon CSV helpers, audio correlation), list them here as pinned requirements and update `docs/getting-started.md`.
