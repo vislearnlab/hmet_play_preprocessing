@@ -16,6 +16,7 @@ Guidance for RAs and collaborators who need to change scripts or conventions.
 |---|---|
 | FPS batch conversion | `convert_fps.py` |
 | Sync/trim | `sync_av.py` |
+| Conda env (RA default) | `environment.yml`, `setup.sh`, `scripts/check_env.py` |
 | FPS design | `docs/design_fps_conversion.md` |
 | Sync design / Neon / sync-point finding | `docs/design_av_sync.md` |
 | Example session config | `examples/sync_session.example.json` |

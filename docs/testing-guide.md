@@ -4,18 +4,21 @@ Use this when validating the tools on practice data, real sessions, or after cod
 
 ## Before any test
 
+- [ ] `conda activate hmet-preprocess`
 - [ ] Working on a **copy** of outputs paths, never writing into `raw/`
-- [ ] `ffmpeg` / `ffprobe` / `python3` available
+- [ ] `python scripts/check_env.py` passes
 - [ ] You can play outputs in a normal video player (VLC, QuickTime, etc.)
 
 ## A. CLI smoke tests (no data required)
 
 ```bash
-python3 convert_fps.py --help
-python3 sync_av.py --help
+conda activate hmet-preprocess
+python scripts/check_env.py
+python convert_fps.py --help
+python sync_av.py --help
 ```
 
-Expected: help text prints; exit code 0.
+Expected: all checks OK / help text prints; exit code 0.
 
 ## B. FPS conversion tests
 

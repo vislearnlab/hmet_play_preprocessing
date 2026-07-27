@@ -4,48 +4,53 @@ Welcome. This guide gets you from a fresh machine to a tested preprocessing run 
 
 ## Day-1 checklist
 
-- [ ] Python 3.9+ available (`python3 --version`)
-- [ ] `ffmpeg` and `ffprobe` installed and on `PATH`
+- [ ] Miniconda or Miniforge installed
 - [ ] Repo cloned / folder opened
-- [ ] `python3 convert_fps.py --help` works
-- [ ] `python3 sync_av.py --help` works
+- [ ] Conda env created (`./setup.sh` or `make setup`)
+- [ ] `conda activate hmet-preprocess`
+- [ ] `python scripts/check_env.py` passes
+- [ ] `python convert_fps.py --help` and `python sync_av.py --help` work
 - [ ] You have read [`pipeline-overview.md`](pipeline-overview.md) once
 - [ ] You know where **raw** session data lives (do not write outputs into that folder)
 
-## Install ffmpeg
+## Environment setup (conda — required for RAs)
 
-### macOS
+RAs use the shared **conda** environment `hmet-preprocess` from [`environment.yml`](../environment.yml). It pins **Python 3.9+** and **ffmpeg** together so every machine matches.
 
-```bash
-brew install ffmpeg
-```
+### 1. Install Conda (once per machine)
 
-### Ubuntu / Debian
+If `conda` is not already available, install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Miniforge](https://github.com/conda-forge/miniforge), then open a new terminal.
 
-```bash
-sudo apt update && sudo apt install -y ffmpeg
-```
-
-### Windows
-
-Install a static build from the [ffmpeg download page](https://ffmpeg.org/download.html), then ensure `ffmpeg.exe` and `ffprobe.exe` are on your `PATH`.
-
-Verify:
-
-```bash
-ffmpeg -version
-ffprobe -version
-```
-
-## Python environment
-
-Current scripts use **only the Python standard library** plus system ffmpeg. You do not need a virtualenv unless you add dependencies later.
+### 2. Create the lab env
 
 ```bash
 cd hmet_play_preprocessing
-python3 convert_fps.py --help
-python3 sync_av.py --help
+./setup.sh
+# or: make setup
+# or: conda env create -f environment.yml
 ```
+
+### 3. Activate and verify (every work session)
+
+```bash
+conda activate hmet-preprocess
+python scripts/check_env.py
+```
+
+Expected: all checks `OK` (Python, ffmpeg, ffprobe, CLI help).
+
+Update an existing env after `environment.yml` changes:
+
+```bash
+./setup.sh
+# or: conda env update -f environment.yml --prune
+```
+
+Scripts still use only the Python standard library plus ffmpeg from the conda env. Future pip pins go in `requirements.txt` / `environment.yml`.
+
+### Fallback (not for RAs)
+
+If you cannot use conda, `./setup.sh --system` can install system ffmpeg and an optional `.venv`. Prefer fixing conda instead so your toolchain matches the lab.
 
 ## Your first FPS conversion (safe)
 

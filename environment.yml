@@ -1,0 +1,21 @@
+# Lab conda environment for HMET preprocessing (RA default).
+# Pins Python + ffmpeg so every machine matches.
+#
+#   ./setup.sh
+#   conda activate hmet-preprocess
+#   python scripts/check_env.py
+#
+# Equivalent:
+#   conda env create -f environment.yml
+
+name: hmet-preprocess
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.9,<3.13
+  - ffmpeg>=6
+  - pip
+  # Future pip packages go under pip: once requirements.txt has pins.
+  # - pip:
+  #   - -r requirements.txt

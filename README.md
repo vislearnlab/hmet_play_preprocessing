@@ -17,38 +17,36 @@ Software sync/trim design lives in [`docs/design_av_sync.md`](docs/design_av_syn
 
 ## Quick start
 
-### 1. Prerequisites
+### 1. Conda environment (required for RAs)
 
-- macOS, Linux, or Windows
-- **Python 3.9+** (stdlib only for current scripts)
-- **ffmpeg** and **ffprobe** on your `PATH`
+RAs use the shared **conda** env so Python and ffmpeg match across machines.
 
 ```bash
-# macOS
-brew install ffmpeg
+# Needs Miniconda or Miniforge installed once on the machine
+./setup.sh
+# same as: make setup
+# same as: conda env create -f environment.yml
 
-# check
-ffmpeg -version
-ffprobe -version
-python3 --version
+conda activate hmet-preprocess
+python scripts/check_env.py
 ```
 
-No `pip install` is required for the current scripts (see `requirements.txt`).
+Later sessions: `conda activate hmet-preprocess` before running scripts.  
+Update an existing env: `./setup.sh` again (or `conda env update -f environment.yml --prune`).
 
-### 2. Clone / open the repo
+No extra `pip` packages are required today (see `requirements.txt`). When pins are added, put them in `requirements.txt` / `environment.yml` and re-run setup.
+
+### 2. Smoke-test the CLIs
+
+With the conda env active:
 
 ```bash
-cd hmet_play_preprocessing
+python convert_fps.py --help
+python sync_av.py --help
+# or: python scripts/check_env.py
 ```
 
-### 3. Smoke-test the CLIs
-
-```bash
-python3 convert_fps.py --help
-python3 sync_av.py --help
-```
-
-### 4. Typical session workflow
+### 3. Typical session workflow
 
 ```text
 raw session media
@@ -121,9 +119,15 @@ Remove `--dry-run` when the printed plan looks right.
 ```text
 hmet_play_preprocessing/
 ├── README.md
-├── requirements.txt
+├── setup.sh                 # create/update conda env (RA default)
+├── Makefile                 # make setup | check
+├── environment.yml          # conda env: Python + ffmpeg
+├── requirements.txt         # optional pip pins (none required yet)
 ├── convert_fps.py
 ├── sync_av.py
+├── scripts/
+│   └── check_env.py         # Python / ffmpeg / CLI smoke test
+├── .github/workflows/ci.yml # CI env smoke on push/PR
 ├── recording-setup-spec.md
 ├── docs/
 │   ├── getting-started.md

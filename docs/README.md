@@ -4,7 +4,7 @@ Hand this list to new RAs after the root [`README.md`](../README.md).
 
 | Doc | Purpose |
 |---|---|
-| [getting-started.md](getting-started.md) | Setup, first FPS run, first sync run |
+| [getting-started.md](getting-started.md) | Conda setup (`hmet-preprocess`), first FPS/sync runs |
 | [pipeline-overview.md](pipeline-overview.md) | Streams, order of operations, folder layout |
 | [testing-guide.md](testing-guide.md) | Smoke tests, QA checklist, common failures |
 | [modifying-the-code.md](modifying-the-code.md) | How to change scripts/config safely |
